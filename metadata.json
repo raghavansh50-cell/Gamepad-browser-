@@ -1,0 +1,6 @@
+{
+  "name": "Gamepad Browser",
+  "description": "An Android web browser equipped with customizable, fully resizable and draggable on-screen gaming keyboard overlays to play and interact with PC-only web games and applications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
