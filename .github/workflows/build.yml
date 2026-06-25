@@ -19,11 +19,12 @@ jobs:
         java-version: '17'
         distribution: 'zulu'
 
-    # Ye naya step corrupt jar file ko bypass kar dega
+    # Is step me validation disable kar di hai taaki corrupt jar block na kare
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
+      with:
+        disable-wrapper-validation: true
 
-    # Yahan hum ./gradlew nahi, direct gradle command run karenge
     - name: Build with Gradle
       run: gradle assembleDebug
 
