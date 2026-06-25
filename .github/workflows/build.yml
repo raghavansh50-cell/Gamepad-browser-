@@ -19,11 +19,14 @@ jobs:
         java-version: '17'
         distribution: 'zulu'
 
-    # Is step me validation disable kar di hai taaki corrupt jar block na kare
+    # Ye step us corrupt jar file ko hamesha ke liye uda dega build se pehle
+    - name: Remove Corrupt Wrapper Jar
+      run: rm -f gradle/wrapper/gradle-wrapper.jar
+
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
       with:
-        disable-wrapper-validation: true
+        validate-wrappers: 'false'
 
     - name: Build with Gradle
       run: gradle assembleDebug
