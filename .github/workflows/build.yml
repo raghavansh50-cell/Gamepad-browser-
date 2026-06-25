@@ -19,7 +19,6 @@ jobs:
         java-version: '17'
         distribution: 'zulu'
 
-    # Ye step us corrupt jar file ko hamesha ke liye uda dega build se pehle
     - name: Remove Corrupt Wrapper Jar
       run: rm -f gradle/wrapper/gradle-wrapper.jar
 
@@ -27,6 +26,11 @@ jobs:
       uses: gradle/actions/setup-gradle@v4
       with:
         validate-wrappers: 'false'
+
+    # Naya Step: Ye fake debug keystore generate karega taaki build pass ho jaye
+    - name: Generate Dummy Debug Keystore
+      run: |
+        keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
     - name: Build with Gradle
       run: gradle assembleDebug
@@ -36,4 +40,3 @@ jobs:
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
-        
